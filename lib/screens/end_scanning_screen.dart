@@ -2,12 +2,23 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_stitching/screens/result_screen.dart';
 import 'package:image_stitching/screens/selection_screen.dart';
 import 'package:image_stitching/widgets/text_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class EndScanningScreen extends StatefulWidget {
+  List images;
 
+  EndScanningScreen({
+    super.key,
+    required this.images,
+  });
+
+  @override
+  State<EndScanningScreen> createState() => _EndScanningScreenState();
+}
+
+class _EndScanningScreenState extends State<EndScanningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +33,9 @@ class HomeScreen extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const SelectionScreen()));
+                  builder: (context) => ResultScreen(
+                        images: widget.images,
+                      )));
             },
             child: Container(
               width: 300,
@@ -46,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                       height: 5,
                     ),
                     TextWidget(
-                      text: 'Start Scanning',
+                      text: 'End Scanning',
                       fontSize: 18,
                       color: Colors.white,
                       fontFamily: 'Bold',
