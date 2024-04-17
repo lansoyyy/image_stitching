@@ -33,9 +33,7 @@ class _EndScanningScreenState extends State<EndScanningScreen> {
           child: GestureDetector(
             onTap: () {
               Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => ResultScreen(
-                        images: widget.images,
-                      )));
+                  builder: (context) => const ResultScreen()));
             },
             child: Container(
               width: 300,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_stitching/screens/home_screen.dart';
+import 'package:image_stitching/screens/result_screen.dart';
 import 'package:image_stitching/screens/selection_screen.dart';
 
 void main() {
