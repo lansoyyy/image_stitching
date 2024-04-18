@@ -6,7 +6,9 @@ import 'package:image_stitching/screens/selection_screen.dart';
 import 'package:image_stitching/widgets/text_widget.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key});
+  List images;
+
+  ResultScreen({super.key, required this.images});
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -31,7 +33,32 @@ class _ResultScreenState extends State<ResultScreen> {
             width: 20,
           ),
           FloatingActionButton(
-            child: const Icon(Icons.save),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.save),
+                TextWidget(
+                  text: 'Original',
+                  fontSize: 11,
+                ),
+              ],
+            ),
+            onPressed: () {},
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+          FloatingActionButton(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.save),
+                TextWidget(
+                  text: 'Stitched',
+                  fontSize: 11,
+                ),
+              ],
+            ),
             onPressed: () {},
           ),
         ],
@@ -51,9 +78,14 @@ class _ResultScreenState extends State<ResultScreen> {
                       color: Colors.grey,
                     ),
                   ),
-                  child: const Row(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: [],
+                    children: [
+                      for (int i = 0; i < widget.images.length; i++)
+                        widget.images[i]['value'] == 6
+                            ? widget.images[i]['widget']
+                            : const SizedBox()
+                    ],
                   ),
                 ),
                 Padding(
@@ -88,9 +120,14 @@ class _ResultScreenState extends State<ResultScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [],
+                        children: [
+                          for (int i = 0; i < widget.images.length; i++)
+                            widget.images[i]['value'] == 1
+                                ? widget.images[i]['widget']
+                                : const SizedBox()
+                        ],
                       ),
                     ),
                     Padding(
@@ -124,9 +161,14 @@ class _ResultScreenState extends State<ResultScreen> {
                               color: Colors.grey,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [],
+                            children: [
+                              for (int i = 0; i < widget.images.length; i++)
+                                widget.images[i]['value'] == 3
+                                    ? widget.images[i]['widget']
+                                    : const SizedBox()
+                            ],
                           ),
                         ),
                         Padding(
@@ -157,9 +199,14 @@ class _ResultScreenState extends State<ResultScreen> {
                               color: Colors.grey,
                             ),
                           ),
-                          child: const Row(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [],
+                            children: [
+                              for (int i = 0; i < widget.images.length; i++)
+                                widget.images[i]['value'] == 2
+                                    ? widget.images[i]['widget']
+                                    : const SizedBox()
+                            ],
                           ),
                         ),
                         Padding(
@@ -190,9 +237,14 @@ class _ResultScreenState extends State<ResultScreen> {
                               color: Colors.grey,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [],
+                            children: [
+                              for (int i = 0; i < widget.images.length; i++)
+                                widget.images[i]['value'] == 4
+                                    ? widget.images[i]['widget']
+                                    : const SizedBox()
+                            ],
                           ),
                         ),
                         Padding(
@@ -225,9 +277,14 @@ class _ResultScreenState extends State<ResultScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: [],
+                        children: [
+                          for (int i = 0; i < widget.images.length; i++)
+                            widget.images[i]['value'] == 5
+                                ? widget.images[i]['widget']
+                                : const SizedBox()
+                        ],
                       ),
                     ),
                     Padding(
