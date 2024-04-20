@@ -13,6 +13,8 @@ import 'package:image_stitching/widgets/button_widget.dart';
 import 'package:image_stitching/widgets/text_widget.dart';
 import 'dart:html' as html;
 
+import 'package:screenshot/screenshot.dart';
+
 class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
 
@@ -21,6 +23,7 @@ class SelectionScreen extends StatefulWidget {
 }
 
 class _SelectionScreenState extends State<SelectionScreen> {
+  ScreenshotController screenshotController = ScreenshotController();
   late CameraController controller;
   List<int>? imgBytes;
 
@@ -108,83 +111,46 @@ class _SelectionScreenState extends State<SelectionScreen> {
   Widget card(IconData icon, String label, int val, String point) {
     return GestureDetector(
       onTap: () async {
+        await controller.initialize();
         showDialog(
           context: context,
           builder: (context) {
             return Dialog(
-              child: SizedBox(
-                width: 500,
-                height: 500,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                        width: 400,
-                        height: 400,
-                        child: CameraPreview(controller)),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    ButtonWidget(
-                      label: 'Capture',
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              child: StatefulBuilder(builder: (context, setState) {
+                return SizedBox(
+                  width: 500,
+                  height: 500,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      SizedBox(
+                          width: 400,
+                          height: 400,
+                          child: CameraPreview(controller)),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ButtonWidget(
+                        label: 'Capture',
+                        onPressed: () async {
+                          final image = await controller.takePicture();
+
+                          showPreviewDialog(icon, label, val, point,
+                              Image.memory(await image.readAsBytes()));
+
+                          setState(() {});
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              }),
             );
           },
         );
-
-        // showDialog(
-        //   context: context,
-        //   builder: (context) {
-        //     return AlertDialog(
-        //       content: Column(
-        //         mainAxisSize: MainAxisSize.min,
-        //         children: [
-        //           SizedBox(height: 250, width: 250, child: fromPicker!),
-        //         ],
-        //       ),
-        //       actions: [
-        //         Container(
-        //           color: Colors.blue,
-        //           child: TextButton(
-        //             onPressed: () {
-        //               Navigator.pop(context);
-        //             },
-        //             child: TextWidget(
-        //               text: 'Scan other dimensions',
-        //               color: Colors.white,
-        //               fontSize: 14,
-        //             ),
-        //           ),
-        //         ),
-        //         Container(
-        //           color: Colors.blue,
-        //           child: TextButton(
-        //             onPressed: () {
-        //               Navigator.of(context).pushReplacement(MaterialPageRoute(
-        //                   builder: (context) => EndScanningScreen(
-        //                         images: images,
-        //                       )));
-        //             },
-        //             child: TextWidget(
-        //               text: 'Continue',
-        //               color: Colors.white,
-        //               fontSize: 14,
-        //             ),
-        //           ),
-        //         ),
-        //       ],
-        //     );
-        //   },
-        // );
       },
       child: Center(
         child: Card(
@@ -227,6 +193,61 @@ class _SelectionScreenState extends State<SelectionScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  showPreviewDialog(
+      IconData icon, String label, int val, String point, Widget img) {
+    images.add({
+      'value': val,
+      'widget': SizedBox(height: 250, width: 250, child: img),
+      'point': point,
+    });
+    Navigator.pop(context);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 250, width: 250, child: img),
+            ],
+          ),
+          actions: [
+            Container(
+              color: Colors.blue,
+              child: TextButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                },
+                child: TextWidget(
+                  text: 'Scan other dimensions',
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+            Container(
+              color: Colors.blue,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => EndScanningScreen(
+                            images: images,
+                          )));
+                },
+                child: TextWidget(
+                  text: 'Continue',
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

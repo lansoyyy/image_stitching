@@ -5,6 +5,7 @@ import 'package:image_stitching/screens/home_screen.dart';
 import 'package:image_stitching/screens/result_screen.dart';
 import 'package:image_stitching/screens/selection_screen.dart';
 
+List images = [];
 late List<CameraDescription> cameras;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
