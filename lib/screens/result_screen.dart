@@ -112,41 +112,43 @@ class _ResultScreenState extends State<ResultScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Stack(
-                    children: [
-                      SizedBox(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            for (int i = 0; i < widget.images.length; i++)
-                              widget.images[i]['value'] == 6
-                                  ? widget.images[i]['widget']
-                                  : const SizedBox()
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: [
+                  //     SizedBox(
+                  //       child: Column(
+                  //         mainAxisAlignment: MainAxisAlignment.start,
+                  //         children: [
+                  //           for (int i = 0; i < widget.images.length; i++)
+                  //             widget.images[i]['value'] == 6
+                  //                 ? widget.images[i]['widget']
+                  //                 : const SizedBox()
+                  //         ],
+                  //       ),
+                  //     ),
+                  //     label('Left'),
+                  //   ],
+                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Stack(
-                        children: [
-                          Container(
-                            decoration: const BoxDecoration(),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                for (int i = 0; i < widget.images.length; i++)
-                                  widget.images[i]['value'] == 1
-                                      ? widget.images[i]['widget']
-                                      : const SizedBox()
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       decoration: const BoxDecoration(),
+                      //       child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.start,
+                      //         children: [
+                      //           for (int i = 0; i < widget.images.length; i++)
+                      //             widget.images[i]['value'] == 1
+                      //                 ? widget.images[i]['widget']
+                      //                 : const SizedBox()
+                      //         ],
+                      //       ),
+                      //     ),
+                      //     label('Top'),
+                      //   ],
+                      // ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -166,6 +168,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   ],
                                 ),
                               ),
+                              label('Left'),
                             ],
                           ),
                           Stack(
@@ -184,6 +187,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   ],
                                 ),
                               ),
+                              label('Front'),
                             ],
                           ),
                           Stack(
@@ -202,6 +206,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   ],
                                 ),
                               ),
+                              label('Right'),
                             ],
                           ),
                         ],
@@ -246,6 +251,25 @@ class _ResultScreenState extends State<ResultScreen> {
               'assets/images/Panorama_of_the_courtyard_of_the_Great_Mosque_of_Kairouan.jpg',
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget label(String label) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, top: 10),
+      child: Container(
+        height: 40,
+        width: 125,
+        color: Colors.blue.withOpacity(0.5),
+        child: Center(
+          child: TextWidget(
+            text: label,
+            fontSize: 14,
+            fontFamily: 'Bold',
+            color: Colors.white,
+          ),
         ),
       ),
     );
