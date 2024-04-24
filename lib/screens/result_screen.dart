@@ -97,286 +97,153 @@ class _ResultScreenState extends State<ResultScreen> {
               }),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for (int i = 0; i < widget.images.length; i++)
-                  SizedBox(
-                    height: 150,
-                    width: 150,
-                    child: Screenshot(
-                        child: widget.images[i]['widget'],
-                        controller: controllers[i]),
-                  )
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Screenshot(
-              controller: screenshotController,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 250,
-                          height: 600,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
+      body: originalWidget(),
+    );
+  }
+
+  Widget originalWidget() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Screenshot(
+            controller: screenshotController,
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    children: [
+                      SizedBox(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            for (int i = 0; i < widget.images.length; i++)
+                              widget.images[i]['value'] == 6
+                                  ? widget.images[i]['widget']
+                                  : const SizedBox()
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < widget.images.length; i++)
+                                  widget.images[i]['value'] == 1
+                                      ? widget.images[i]['widget']
+                                      : const SizedBox()
+                              ],
                             ),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
                             children: [
-                              for (int i = 0; i < widget.images.length; i++)
-                                widget.images[i]['value'] == 6
-                                    ? widget.images[i]['widget']
-                                    : const SizedBox()
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    for (int i = 0;
+                                        i < widget.images.length;
+                                        i++)
+                                      widget.images[i]['value'] == 3
+                                          ? widget.images[i]['widget']
+                                          : const SizedBox()
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 10),
-                          child: Container(
-                            height: 40,
-                            width: 125,
-                            color: Colors.blue.withOpacity(0.5),
-                            child: Center(
-                              child: TextWidget(
-                                text: 'Back',
-                                fontSize: 14,
-                                fontFamily: 'Bold',
-                                color: Colors.white,
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    for (int i = 0;
+                                        i < widget.images.length;
+                                        i++)
+                                      widget.images[i]['value'] == 2
+                                          ? widget.images[i]['widget']
+                                          : const SizedBox()
+                                  ],
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              width: 500,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
+                          Stack(
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    for (int i = 0;
+                                        i < widget.images.length;
+                                        i++)
+                                      widget.images[i]['value'] == 4
+                                          ? widget.images[i]['widget']
+                                          : const SizedBox()
+                                  ],
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  for (int i = 0; i < widget.images.length; i++)
-                                    widget.images[i]['value'] == 1
-                                        ? widget.images[i]['widget']
-                                        : const SizedBox()
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 10),
-                              child: Container(
-                                height: 40,
-                                width: 125,
-                                color: Colors.blue.withOpacity(0.5),
-                                child: Center(
-                                  child: TextWidget(
-                                    text: 'Top',
-                                    fontSize: 14,
-                                    fontFamily: 'Bold',
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  width: 166,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      for (int i = 0;
-                                          i < widget.images.length;
-                                          i++)
-                                        widget.images[i]['value'] == 3
-                                            ? widget.images[i]['widget']
-                                            : const SizedBox()
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
-                                  child: Container(
-                                    height: 40,
-                                    width: 125,
-                                    color: Colors.blue.withOpacity(0.5),
-                                    child: Center(
-                                      child: TextWidget(
-                                        text: 'Left',
-                                        fontSize: 14,
-                                        fontFamily: 'Bold',
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Container(
-                                  width: 166,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      for (int i = 0;
-                                          i < widget.images.length;
-                                          i++)
-                                        widget.images[i]['value'] == 2
-                                            ? widget.images[i]['widget']
-                                            : const SizedBox()
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
-                                  child: Container(
-                                    height: 40,
-                                    width: 125,
-                                    color: Colors.blue.withOpacity(0.5),
-                                    child: Center(
-                                      child: TextWidget(
-                                        text: 'Front',
-                                        fontSize: 14,
-                                        fontFamily: 'Bold',
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Stack(
-                              children: [
-                                Container(
-                                  width: 166,
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      for (int i = 0;
-                                          i < widget.images.length;
-                                          i++)
-                                        widget.images[i]['value'] == 4
-                                            ? widget.images[i]['widget']
-                                            : const SizedBox()
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 10),
-                                  child: Container(
-                                    height: 40,
-                                    width: 125,
-                                    color: Colors.blue.withOpacity(0.5),
-                                    child: Center(
-                                      child: TextWidget(
-                                        text: 'Right',
-                                        fontSize: 14,
-                                        fontFamily: 'Bold',
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Stack(
-                          children: [
-                            Container(
-                              width: 500,
-                              height: 200,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  for (int i = 0; i < widget.images.length; i++)
-                                    widget.images[i]['value'] == 5
-                                        ? widget.images[i]['widget']
-                                        : const SizedBox()
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 10),
-                              child: Container(
-                                height: 40,
-                                width: 125,
-                                color: Colors.blue.withOpacity(0.5),
-                                child: Center(
-                                  child: TextWidget(
-                                    text: 'Bottom',
-                                    fontSize: 14,
-                                    fontFamily: 'Bold',
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // Stack(
+                      //   children: [
+                      //     Container(
+                      //       decoration: const BoxDecoration(),
+                      //       child: Row(
+                      //         mainAxisAlignment: MainAxisAlignment.start,
+                      //         children: [
+                      //           for (int i = 0; i < widget.images.length; i++)
+                      //             widget.images[i]['value'] == 5
+                      //                 ? widget.images[i]['widget']
+                      //                 : const SizedBox()
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 20,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget newWidget() {
+    return Center(
+      child: SizedBox(
+        height: 500,
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/images/Panorama_of_the_courtyard_of_the_Great_Mosque_of_Kairouan.jpg',
             ),
           ],
         ),
