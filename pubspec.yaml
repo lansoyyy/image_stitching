@@ -44,8 +44,7 @@ dependencies:
   path_provider:
   camera_web:
   camera:
-  file_saver:
-  universal_io:
+  flutter_file_saver:
 
 dev_dependencies:
   flutter_test:

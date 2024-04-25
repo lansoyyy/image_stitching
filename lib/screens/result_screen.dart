@@ -1,8 +1,11 @@
-import 'dart:html';
+import 'dart:io';
 import 'dart:typed_data';
+
 import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_file_saver/flutter_file_saver.dart';
 import 'package:image_stitching/screens/selection_screen.dart';
 import 'package:image_stitching/widgets/text_widget.dart';
 import 'package:screenshot/screenshot.dart';
@@ -20,6 +23,11 @@ class _ResultScreenState extends State<ResultScreen> {
   ScreenshotController screenshotController = ScreenshotController();
 
   List<ScreenshotController> controllers = [];
+
+  Future<void> writeBytesToFile(Uint8List bytes, String filePath) async {
+    final File file = File(filePath);
+    await file.writeAsBytes(bytes);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +63,14 @@ class _ResultScreenState extends State<ResultScreen> {
             onPressed: () async {
               for (int i = 0; i < controllers.length; i++) {
                 Uint8List? bytes = await controllers[i].capture();
-                if (bytes != null) {
-                  final blob = html.Blob([bytes]);
-                  final url = html.Url.createObjectUrlFromBlob(blob);
 
-                  final anchor = html.AnchorElement(href: url)
-                    ..setAttribute('download', 'original image $i.png')
-                    ..click();
+                // await FileSaver.instance
+                //     .saveFile(name: 'original $i', file: file);
 
-                  html.Url.revokeObjectUrl(url);
-                }
+                FlutterFileSaver().writeFileAsBytes(
+                  fileName: 'original $i.png',
+                  bytes: bytes!,
+                );
               }
             },
           ),
@@ -85,14 +91,10 @@ class _ResultScreenState extends State<ResultScreen> {
               onPressed: () async {
                 Uint8List? bytes = await screenshotController.capture();
                 if (bytes != null) {
-                  final blob = html.Blob([bytes]);
-                  final url = html.Url.createObjectUrlFromBlob(blob);
-
-                  final anchor = html.AnchorElement(href: url)
-                    ..setAttribute('download', 'stitched image.png')
-                    ..click();
-
-                  html.Url.revokeObjectUrl(url);
+                  FlutterFileSaver().writeFileAsBytes(
+                    fileName: 'stitched.png',
+                    bytes: bytes,
+                  );
                 }
               }),
         ],

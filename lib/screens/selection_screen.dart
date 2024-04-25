@@ -70,11 +70,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            card(Icons.arrow_upward, 'Press Top', 1, 'Top'),
+            card(Icons.arrow_upward, 'Scan Top', 1, 'Top'),
             const SizedBox(
               width: 50,
             ),
-            card(Icons.front_hand, 'Press Front', 2, 'Front'),
+            card(Icons.front_hand, 'Scan Front', 2, 'Front'),
           ],
         ),
         const SizedBox(
@@ -83,12 +83,12 @@ class _SelectionScreenState extends State<SelectionScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            card(Icons.keyboard_arrow_left_outlined, 'Press Left Side', 3,
+            card(Icons.keyboard_arrow_left_outlined, 'Scan Left Side', 3,
                 'Left'),
             const SizedBox(
               width: 50,
             ),
-            card(Icons.keyboard_arrow_right, 'Press Right Side', 4, 'Right'),
+            card(Icons.keyboard_arrow_right, 'Scan Right Side', 4, 'Right'),
           ],
         ),
         const SizedBox(
@@ -97,11 +97,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            card(Icons.arrow_downward, 'Press Bottom', 5, 'Bottom'),
+            card(Icons.arrow_downward, 'Scan Bottom', 5, 'Bottom'),
             const SizedBox(
               width: 50,
             ),
-            card(Icons.back_hand, 'Press Back', 6, 'Back'),
+            card(Icons.back_hand, 'Scan Back', 6, 'Back'),
           ],
         ),
       ],
