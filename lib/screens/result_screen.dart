@@ -60,7 +60,7 @@ class _ResultScreenState extends State<ResultScreen> {
                   final url = html.Url.createObjectUrlFromBlob(blob);
 
                   final anchor = html.AnchorElement(href: url)
-                    ..setAttribute('download', 'original image.png')
+                    ..setAttribute('download', 'original image $i.png')
                     ..click();
 
                   html.Url.revokeObjectUrl(url);
@@ -105,6 +105,22 @@ class _ResultScreenState extends State<ResultScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (int i = 0; i < widget.images.length; i++)
+                SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Screenshot(
+                      child: widget.images[i]['widget'],
+                      controller: controllers[i]),
+                )
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           Screenshot(
             controller: screenshotController,
             child: Center(
@@ -112,121 +128,100 @@ class _ResultScreenState extends State<ResultScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Stack(
-                  //   children: [
-                  //     SizedBox(
-                  //       child: Column(
-                  //         mainAxisAlignment: MainAxisAlignment.start,
-                  //         children: [
-                  //           for (int i = 0; i < widget.images.length; i++)
-                  //             widget.images[i]['value'] == 6
-                  //                 ? widget.images[i]['widget']
-                  //                 : const SizedBox()
-                  //         ],
-                  //       ),
-                  //     ),
-                  //     label('Left'),
-                  //   ],
-                  // ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       decoration: const BoxDecoration(),
-                      //       child: Row(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         children: [
-                      //           for (int i = 0; i < widget.images.length; i++)
-                      //             widget.images[i]['value'] == 1
-                      //                 ? widget.images[i]['widget']
-                      //                 : const SizedBox()
-                      //         ],
-                      //       ),
-                      //     ),
-                      //     label('Top'),
-                      //   ],
-                      // ),
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            for (int i = 0; i < widget.images.length; i++)
+                              widget.images[i]['value'] == 1
+                                  ? Stack(
+                                      children: [
+                                        widget.images[i]['widget'],
+                                        label('Top'),
+                                      ],
+                                    )
+                                  : const SizedBox()
+                          ],
+                        ),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Stack(
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    for (int i = 0;
-                                        i < widget.images.length;
-                                        i++)
-                                      widget.images[i]['value'] == 3
-                                          ? widget.images[i]['widget']
-                                          : const SizedBox()
-                                  ],
-                                ),
-                              ),
-                              label('Left'),
-                            ],
+                          Container(
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < widget.images.length; i++)
+                                  widget.images[i]['value'] == 3
+                                      ? Stack(
+                                          children: [
+                                            widget.images[i]['widget'],
+                                            label('Left'),
+                                          ],
+                                        )
+                                      : const SizedBox()
+                              ],
+                            ),
                           ),
-                          Stack(
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    for (int i = 0;
-                                        i < widget.images.length;
-                                        i++)
-                                      widget.images[i]['value'] == 2
-                                          ? widget.images[i]['widget']
-                                          : const SizedBox()
-                                  ],
-                                ),
-                              ),
-                              label('Front'),
-                            ],
+                          Container(
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < widget.images.length; i++)
+                                  widget.images[i]['value'] == 2
+                                      ? Stack(
+                                          children: [
+                                            widget.images[i]['widget'],
+                                            label('Front'),
+                                          ],
+                                        )
+                                      : const SizedBox()
+                              ],
+                            ),
                           ),
-                          Stack(
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    for (int i = 0;
-                                        i < widget.images.length;
-                                        i++)
-                                      widget.images[i]['value'] == 4
-                                          ? widget.images[i]['widget']
-                                          : const SizedBox()
-                                  ],
-                                ),
-                              ),
-                              label('Right'),
-                            ],
+                          Container(
+                            decoration: const BoxDecoration(),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < widget.images.length; i++)
+                                  widget.images[i]['value'] == 4
+                                      ? Stack(
+                                          children: [
+                                            widget.images[i]['widget'],
+                                            label('Right'),
+                                          ],
+                                        )
+                                      : const SizedBox()
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                      // Stack(
-                      //   children: [
-                      //     Container(
-                      //       decoration: const BoxDecoration(),
-                      //       child: Row(
-                      //         mainAxisAlignment: MainAxisAlignment.start,
-                      //         children: [
-                      //           for (int i = 0; i < widget.images.length; i++)
-                      //             widget.images[i]['value'] == 5
-                      //                 ? widget.images[i]['widget']
-                      //                 : const SizedBox()
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
+                      Container(
+                        decoration: const BoxDecoration(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            for (int i = 0; i < widget.images.length; i++)
+                              widget.images[i]['value'] == 5
+                                  ? Stack(
+                                      children: [
+                                        widget.images[i]['widget'],
+                                        label('Bottom'),
+                                      ],
+                                    )
+                                  : const SizedBox()
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -258,7 +253,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Widget label(String label) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, top: 10),
+      padding: const EdgeInsets.only(left: 10, top: 60),
       child: Container(
         height: 40,
         width: 125,
